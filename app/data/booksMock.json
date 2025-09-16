@@ -1,0 +1,69 @@
+{
+  "books": [
+    {
+      "id": "1a2b3c4d",
+      "title": "O Segredo do Vale Sombrio",
+      "author": "Mariana Albuquerque",
+      "genre": "Fantasia",
+      "year_published": 2019,
+      "year_registration": 2023,
+      "pages": 384,
+      "rating": 4,
+      "status": "LIDO",
+      "synopsis": "Em um vale esquecido pelo tempo, uma jovem descobre que seu destino está ligado a forças mágicas antigas que podem salvar ou destruir o mundo.",
+      "cover": "https://example.com/capas/vale-sombrio.jpg"
+    },
+    {
+      "id": "2b3c4d5e",
+      "title": "O Último Suspiro",
+      "author": "Rafael Monteiro",
+      "genre": "Suspense",
+      "year_published": 2021,
+      "year_registration": 2024,
+      "pages": 298,
+      "rating": 5,
+      "status": "LENDO",
+      "synopsis": "Um detetive aposentado é arrastado de volta ao submundo do crime quando uma série de assassinatos segue um padrão ligado ao seu passado.",
+      "cover": "https://example.com/capas/ultimo-suspiro.jpg"
+    },
+    {
+      "id": "3c4d5e6f",
+      "title": "Entre Dois Mundos",
+      "author": "Camila Ferreira",
+      "genre": "Romance",
+      "year_published": 2018,
+      "year_registration": 2024,
+      "pages": 412,
+      "rating": 3,
+      "status": "ABANDONADO",
+      "synopsis": "Duas pessoas de realidades completamente diferentes se encontram e precisam lutar contra preconceitos e escolhas difíceis para ficarem juntas.",
+      "cover": "https://example.com/capas/entre-dois-mundos.jpg"
+    },
+    {
+      "id": "4d5e6f7g",
+      "title": "Além das Estrelas",
+      "author": "Lucas Andrade",
+      "genre": "Ficção Científica",
+      "year_published": 2020,
+      "year_registration": 2025,
+      "pages": 450,
+      "rating": 5,
+      "status": "LENDO",
+      "synopsis": "Uma missão espacial em busca de um novo planeta habitável revela segredos sombrios sobre a humanidade e sua relação com o universo.",
+      "cover": "https://example.com/capas/alem-das-estrelas.jpg"
+    },
+    {
+      "id": "5e6f7g8h",
+      "title": "O Silêncio da Floresta",
+      "author": "Beatriz Costa",
+      "genre": "Terror",
+      "year_published": 2017,
+      "year_registration": 2025,
+      "pages": 276,
+      "rating": 4,
+      "status": "QUERO_LER",
+      "synopsis": "Um grupo de amigos decide acampar em uma floresta isolada, mas descobre que o silêncio esconde segredos aterrorizantes.",
+      "cover": "https://example.com/capas/silencio-da-floresta.jpg"
+    }
+  ]
+}
