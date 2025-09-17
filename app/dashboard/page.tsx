@@ -2,6 +2,7 @@ import { BookAIcon, BookCheck, BookOpen } from "lucide-react";
 import CardBook from "../_components/CardBook";
 import Chart from "../_components/Chart";
 import { Book } from "../types/books";
+import BooksList from "../_components/books";
 
 export default async function Dashboard() {
   const response = await fetch("http://localhost:3000/books", {
@@ -67,6 +68,10 @@ export default async function Dashboard() {
           </h2>
           <Chart data={booksAlreadyRead} color="#22c55e" />
         </div>
+      </div>
+      <div className="mt-8">
+        <h2 className="text-2xl font-bold mb-4 text-center">Sua Biblioteca</h2>
+        <BooksList books ={data} />
       </div>
     </div>
   );
