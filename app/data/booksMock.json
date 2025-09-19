@@ -65,5 +65,67 @@
       "synopsis": "Um grupo de amigos decide acampar em uma floresta isolada, mas descobre que o silêncio esconde segredos aterrorizantes.",
       "cover": ""
     }
+  ],
+  "genres": [
+    {
+      "id": "1",
+      "genre": "Literatura Brasileira"
+    },
+    {
+      "id": "2",
+      "genre": "Ficção Científica"
+    },
+    {
+      "id": "3",
+      "genre": "Realismo Mágico"
+    },
+    {
+      "id": "4",
+      "genre": "Ficção"
+    },
+    {
+      "id": "5",
+      "genre": "Fantasia"
+    },
+    {
+      "id": "6",
+      "genre": "Romance"
+    },
+    {
+      "id": "7",
+      "genre": "Biografia"
+    },
+    {
+      "id": "8",
+      "genre": "História"
+    },
+    {
+      "id": "9",
+      "genre": "Autoajuda"
+    },
+    {
+      "id": "10",
+      "genre": "Tecnologia"
+    },
+    {
+      "id": "11",
+      "genre": "Programação"
+    },
+    {
+      "id": "12",
+      "genre": "Negócios"
+    },
+    {
+      "id": "13",
+      "genre": "Psicologia"
+    },
+    {
+      "id": "14",
+      "genre": "Filosofia"
+    },
+    {
+      "id": "15",
+      "genre": "Poesia"
+    }
   ]
 }

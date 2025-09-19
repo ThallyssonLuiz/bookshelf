@@ -1,5 +1,4 @@
-import { Card, CardContent, CardFooter } from "@/components/ui/card";
-import { Pen, Trash } from "lucide-react";
+import { Card, CardContent } from "@/components/ui/card";
 import Image from "next/image";
 
 interface BooksItemProps {
@@ -48,14 +47,6 @@ export function BooksItem({
             {status}
           </span>
         </div>
-        <CardFooter className="flex justify-between mt-3.5 p-0">
-          <button className="text-yellow-800 bg-yellow-100 cursor-pointer p-0.5 rounded hover:animate-pulse">
-            <Pen />
-          </button>
-          <button className="text-red-800 bg-red-100 cursor-pointer p-0.5 rounded hover:animate-pulse">
-            <Trash />
-          </button>
-        </CardFooter>
       </CardContent>
     </Card>
   );
