@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import { Input } from "@/components/ui/input";
 import {
   Select,
@@ -6,12 +6,12 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@radix-ui/react-select";
+} from "@/components/ui/select";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 import { BooksItem } from "../_components/BooksItem";
 import { GetBooks, GetGenres } from "../api/data";
 import { Book } from "../types/books";
-import { useEffect, useState } from "react";
 
 export default function BooksList() {
   const [books, setBooks] = useState<Book[]>([]);
@@ -42,35 +42,43 @@ export default function BooksList() {
     const matchesGenre =
       selectedGenre === "all" || book.genre === selectedGenre;
 
-  return matchesSearch && matchesGenre;
-});
-  
+    return matchesSearch && matchesGenre;
+  });
+
   return (
     <div className="flex flex-col justify-center sm:justify-start gap-6">
       <h2 className="text-2xl font-bold m-3 text-center text-gray-700">
         Sua Biblioteca
       </h2>
+
       <div className="flex p-4 gap-3">
         <Input
           className="border border-gray-700"
-          placeholder="Filtrar por autor ou titulo..."
+          placeholder="Filtrar por autor ou título..."
           value={value}
           onChange={(e) => setValue(e.target.value)}
         />
-        <Select value={selectedGenre} onValueChange={setSelectedGenre}>
+        <Select
+          value={selectedGenre}
+          onValueChange={(val) => setSelectedGenre(val)}
+        >
           <SelectTrigger className="w-[180px] text-gray-950">
             <SelectValue placeholder="Filtrar por gênero" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="all">Todos</SelectItem>
+            <SelectItem value="all">Todos os gêneros</SelectItem>
             {genres.map((genre) => (
-              <SelectItem key={genre.id} value={genre.genre}>
+              <SelectItem
+                key={genre.id}
+                value={genre.genre || String(genre.id)}
+              >
                 {genre.genre}
               </SelectItem>
             ))}
           </SelectContent>
         </Select>
       </div>
+
       <div className="mt-8 flex flex-wrap items-center justify-center gap-6">
         {filteredBooks.length > 0 ? (
           filteredBooks.map((book) => (
@@ -85,7 +93,7 @@ export default function BooksList() {
             </Link>
           ))
         ) : (
-          <p className="text-gray-500">Nenhum livro cadastrado.</p>
+          <p className="text-gray-500">Nenhum livro encontrado.</p>
         )}
       </div>
     </div>
