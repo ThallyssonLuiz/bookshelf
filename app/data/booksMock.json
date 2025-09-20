@@ -64,6 +64,54 @@
       "status": "QUERO_LER",
       "synopsis": "Um grupo de amigos decide acampar em uma floresta isolada, mas descobre que o silêncio esconde segredos aterrorizantes.",
       "cover": ""
+    },
+    {
+      "id": "327c",
+      "title": "Icha Icha Paraíso",
+      "author": "Jiraya",
+      "genre": "Romance",
+      "year_published": 2011,
+      "pages": 630,
+      "synopsis": "O Icha Icha Paraíso (イチャイチャパラダイス, Icha Icha Paradaisu; Panini: \"Icha Icha Paradise\", \"Icha-Icha Paradise\" ou \"Jardim dos Amassos\"; Crunchyroll: \"Jardim dos Amassos\" ou \"Paraíso Icha Icha\")[10][11] ou Icha Para (イチャパラ; Panini: \"Icha-Para\")[12] foi o primeiro livro a aparecer na série, e também foi o primeiro a ser publicado. A capa é laranja e a ilustração mostra um homem alegre perseguindo uma mulher alegre. Seu enredo é resumido como: \"O personagem principal e a heroína, ambos novos no amor, começam a namorar e seus olhos gradualmente se abrem para o amor adulto\".",
+      "status": "QUERO_LER",
+      "cover": "https://m.media-amazon.com/images/I/51f-wC8p93L._UF1000,1000_QL80_.jpg",
+      "year_registration": 2025
+    },
+    {
+      "id": "dab3",
+      "title": "O Senhor dos Anéis",
+      "author": "J. R. R. Tolkien",
+      "genre": "Fantasia",
+      "year_published": 1949,
+      "pages": 1232,
+      "synopsis": "O Senhor dos Anéis é um livro de alta fantasia, escrito pelo escritor britânico J. R. R. Tolkien. Escrita entre 1937 e 1949, com muitas partes criadas durante a Segunda Guerra Mundial, a saga é uma continuação de O Hobbit.",
+      "status": "LENDO",
+      "cover": "https://m.media-amazon.com/images/I/71ZLavBjpRL._UF1000,1000_QL80_.jpg",
+      "year_registration": 2025
+    },
+    {
+      "id": "e077",
+      "title": "Teste",
+      "author": "teste",
+      "genre": "Ficção",
+      "year_published": 1202,
+      "pages": 1200,
+      "synopsis": "",
+      "status": "LENDO",
+      "cover": "https://wallpapers.com/images/hd/naruto-shippuden-pictures-th3sh08uchw11qg6.jpg",
+      "year_registration": 2025
+    },
+    {
+      "id": "d12e",
+      "title": "Teste",
+      "author": "Teste",
+      "genre": "Ficção",
+      "year_published": 1200,
+      "pages": 1022,
+      "synopsis": "fdsfsfasdfsfds ",
+      "status": "LIDO",
+      "cover": "",
+      "year_registration": 2025
     }
   ],
   "genres": [
