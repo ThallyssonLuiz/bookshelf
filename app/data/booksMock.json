@@ -11,7 +11,7 @@
       "rating": 4,
       "status": "LIDO",
       "synopsis": "Em um vale esquecido pelo tempo, uma jovem descobre que seu destino está ligado a forças mágicas antigas que podem salvar ou destruir o mundo.",
-      "cover": "https://example.com/capas/vale-sombrio.jpg"
+      "cover": ""
     },
     {
       "id": "2b3c4d5e",
@@ -24,7 +24,7 @@
       "rating": 5,
       "status": "LENDO",
       "synopsis": "Um detetive aposentado é arrastado de volta ao submundo do crime quando uma série de assassinatos segue um padrão ligado ao seu passado.",
-      "cover": "https://example.com/capas/ultimo-suspiro.jpg"
+      "cover": ""
     },
     {
       "id": "3c4d5e6f",
@@ -37,7 +37,7 @@
       "rating": 3,
       "status": "ABANDONADO",
       "synopsis": "Duas pessoas de realidades completamente diferentes se encontram e precisam lutar contra preconceitos e escolhas difíceis para ficarem juntas.",
-      "cover": "https://example.com/capas/entre-dois-mundos.jpg"
+      "cover": ""
     },
     {
       "id": "4d5e6f7g",
@@ -48,9 +48,9 @@
       "year_registration": 2025,
       "pages": 450,
       "rating": 5,
-      "status": "LENDO",
+      "status": "PAUSADO",
       "synopsis": "Uma missão espacial em busca de um novo planeta habitável revela segredos sombrios sobre a humanidade e sua relação com o universo.",
-      "cover": "https://example.com/capas/alem-das-estrelas.jpg"
+      "cover": ""
     },
     {
       "id": "5e6f7g8h",
@@ -63,7 +63,69 @@
       "rating": 4,
       "status": "QUERO_LER",
       "synopsis": "Um grupo de amigos decide acampar em uma floresta isolada, mas descobre que o silêncio esconde segredos aterrorizantes.",
-      "cover": "https://example.com/capas/silencio-da-floresta.jpg"
+      "cover": ""
+    }
+  ],
+  "genres": [
+    {
+      "id": "1",
+      "genre": "Literatura Brasileira"
+    },
+    {
+      "id": "2",
+      "genre": "Ficção Científica"
+    },
+    {
+      "id": "3",
+      "genre": "Realismo Mágico"
+    },
+    {
+      "id": "4",
+      "genre": "Ficção"
+    },
+    {
+      "id": "5",
+      "genre": "Fantasia"
+    },
+    {
+      "id": "6",
+      "genre": "Romance"
+    },
+    {
+      "id": "7",
+      "genre": "Biografia"
+    },
+    {
+      "id": "8",
+      "genre": "História"
+    },
+    {
+      "id": "9",
+      "genre": "Autoajuda"
+    },
+    {
+      "id": "10",
+      "genre": "Tecnologia"
+    },
+    {
+      "id": "11",
+      "genre": "Programação"
+    },
+    {
+      "id": "12",
+      "genre": "Negócios"
+    },
+    {
+      "id": "13",
+      "genre": "Psicologia"
+    },
+    {
+      "id": "14",
+      "genre": "Filosofia"
+    },
+    {
+      "id": "15",
+      "genre": "Poesia"
     }
   ]
 }
