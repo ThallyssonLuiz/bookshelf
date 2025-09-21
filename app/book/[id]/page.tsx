@@ -1,5 +1,6 @@
 import { GetBookById } from "@/app/api/data";
 import { Book } from "@/app/types/books";
+import { DeleteBookButton } from "./DeleteBookButton";
 
 interface BookPageParams {
   params: {
@@ -29,12 +30,19 @@ export default async function BookPage({ params }: Readonly<BookPageParams>) {
         <span className="font-semibold">Ano:</span> {book.year_published}
       </p>
 
+      
+      
       {book.synopsis && (
         <div className="mt-4">
           <h2 className="text-xl font-semibold">Descrição</h2>
           <p className="text-gray-700 mt-2">{book.synopsis}</p>
         </div>
       )}
+      <p></p>
+      <DeleteBookButton id={book.id} /> 
+
+      {/* Chamando o botao de Deletar livro. */}
+
     </div>
   );
 }

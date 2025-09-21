@@ -100,18 +100,6 @@
       "status": "LENDO",
       "cover": "https://wallpapers.com/images/hd/naruto-shippuden-pictures-th3sh08uchw11qg6.jpg",
       "year_registration": 2025
-    },
-    {
-      "id": "d12e",
-      "title": "Teste",
-      "author": "Teste",
-      "genre": "Ficção",
-      "year_published": 1200,
-      "pages": 1022,
-      "synopsis": "fdsfsfasdfsfds ",
-      "status": "LIDO",
-      "cover": "",
-      "year_registration": 2025
     }
   ],
   "genres": [
