@@ -26,7 +26,7 @@ export function BooksItem({
   author,
   status,
 }: Readonly<BooksItemProps>) {
-  const style = statusStyle[status];
+  const style = statusStyle[status] || { bgColor: "bg-gray-100", textColor: "text-gray-800" };
   return (
     <Card className="pt-0 w-64 max-w-sm overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 ease-in-out">
       <div className="relative h-48 w-full">

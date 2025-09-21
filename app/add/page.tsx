@@ -2,25 +2,20 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useState, startTransition } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
-
 import { Label } from "@/components/ui/label";
-import { title } from "process";
+import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@/components/ui/select";
+
 import { CreateBook, GetGenres } from "../api/data";
+
 const DEFAULT_COVER = "/covers/default-cover.png";
+
 const schema = z.object({
   title: z.string().min(1),
   author: z.string().min(1),
@@ -28,9 +23,7 @@ const schema = z.object({
   year_published: z.number().min(0),
   pages: z.number().min(1),
   synopsis: z.string().optional(),
-  status: z
-    .enum(["LIDO", "LENDO", "QUERO_LER", "PAUSADO", "ABANDONADO"])
-    .default("QUERO_LER"),
+  status: z.enum(["LIDO", "LENDO", "QUERO_LER", "PAUSADO", "ABANDONADO"]).default("QUERO_LER"),
   cover: z.string().url().or(z.literal("")).optional(),
 });
 
@@ -38,15 +31,9 @@ export default function AddBookPage() {
   const router = useRouter();
   const [genres, setGenres] = useState<{ id: string; genre: string }[]>([]);
   const [loading, setLoading] = useState(false);
-  const [coverPreview, setCoverPreview] = useState("");
+  const [coverPreview, setCoverPreview] = useState(DEFAULT_COVER);
 
-  const {
-    register,
-    handleSubmit,
-    setValue,
-    watch,
-    formState: { errors },
-  } = useForm({
+  const { register, handleSubmit, setValue, watch, formState: { errors } } = useForm({
     resolver: zodResolver(schema),
     defaultValues: { status: "QUERO_LER" },
   });
@@ -54,11 +41,7 @@ export default function AddBookPage() {
   const coverUrl = watch("cover");
 
   useEffect(() => {
-    if (coverUrl && coverUrl.trim() !== "") {
-      setCoverPreview(coverUrl);
-    } else {
-      setCoverPreview(DEFAULT_COVER);
-    }
+    setCoverPreview(coverUrl?.trim() ? coverUrl : DEFAULT_COVER);
   }, [coverUrl]);
 
   useEffect(() => {
@@ -70,7 +53,10 @@ export default function AddBookPage() {
     try {
       const yearNow = new Date().getFullYear();
       await CreateBook({ ...data, year_registration: yearNow });
-      router.push("/library");
+
+      startTransition(() => {
+        router.push("/library");
+      });
     } catch {
       alert("Erro ao criar livro");
     } finally {
@@ -82,116 +68,58 @@ export default function AddBookPage() {
     <div className="max-w-3xl mx-auto p-6">
       <h1 className="text-2xl font-bold mb-6">Adicionar Novo Livro</h1>
       <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
-        <div>
-          <Label className="block mb-1 font-semibold">Título</Label>
-          <Input {...register("title")} />
-          {errors.title && (
-            <p className="text-red-500">{errors.title.message}</p>
-          )}
-        </div>
+        <InputField label="Título" {...register("title")} error={errors.title?.message} />
+        <InputField label="Autor" {...register("author")} error={errors.author?.message} />
+        <SelectField label="Gênero" options={genres.map(g => g.genre)} onChange={v => setValue("genre", v)} error={errors.genre?.message} />
+        <InputField label="Ano de Publicação" type="number" {...register("year_published", { valueAsNumber: true })} error={errors.year_published?.message} />
+        <InputField label="Número de Páginas" type="number" {...register("pages", { valueAsNumber: true })} error={errors.pages?.message} />
+        <TextareaField label="Sinopse" {...register("synopsis")} />
+        <SelectField
+          label="Status"
+          options={["LENDO","LIDO","QUERO_LER","PAUSADO","ABANDONADO"]}
+          onChange={v => setValue("status", v)}
+        />
+        <InputField label="URL da Capa" {...register("cover")} placeholder="https://..." />
 
-        <div>
-          <Label className="block mb-1 font-semibold">Autor</Label>
-          <Input {...register("author")} />
-          {errors.author && (
-            <p className="text-red-500">{errors.author.message}</p>
-          )}
-        </div>
+        {coverPreview && <img src={coverPreview} alt="Preview da capa" className="object-cover w-[250px] h-[350px]" />}
 
-        <div>
-          <Label className="block mb-1 font-semibold">Gênero</Label>
-          <Select onValueChange={(value) => setValue("genre", value)}>
-            <SelectTrigger>
-              <SelectValue placeholder="Selecione o gênero" />
-            </SelectTrigger>
-            <SelectContent>
-              {genres.map((g) => (
-                <SelectItem key={g.id} value={g.genre}>
-                  {g.genre}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-          {errors.genre && (
-            <p className="text-red-500">{errors.genre.message}</p>
-          )}
-        </div>
-
-        <div>
-          <Label className="block mb-1 font-semibold">Ano de Publicação</Label>
-          <Input
-            type="number"
-            {...register("year_published", { valueAsNumber: true })}
-          />
-          {errors.year_published && (
-            <p className="text-red-500">{errors.year_published.message}</p>
-          )}
-        </div>
-
-        <div>
-          <Label className="block mb-1 font-semibold">Número de Páginas</Label>
-          <Input
-            type="number"
-            {...register("pages", { valueAsNumber: true })}
-          />
-          {errors.pages && (
-            <p className="text-red-500">{errors.pages.message}</p>
-          )}
-        </div>
-
-        <div>
-          <Label className="block mb-1 font-semibold">Sinopse</Label>
-          <Textarea {...register("synopsis")} />
-        </div>
-
-        <div>
-          <Label className="block mb-1 font-semibold">Status</Label>
-          <Select
-            onValueChange={(value) =>
-              setValue(
-                "status",
-                value as
-                  | "QUERO_LER"
-                  | "LIDO"
-                  | "LENDO"
-                  | "PAUSADO"
-                  | "ABANDONADO"
-              )
-            }
-          >
-            <SelectTrigger>
-              <SelectValue placeholder="Selecione o status" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="LENDO">Lendo</SelectItem>
-              <SelectItem value="LIDO">Lido</SelectItem>
-              <SelectItem value="QUERO_LER">Quero ler</SelectItem>
-              <SelectItem value="PAUSADO">Pausado</SelectItem>
-              <SelectItem value="ABANDONADO">Abandonado</SelectItem>
-            </SelectContent>
-          </Select>
-        </div>
-
-        <div>
-          <Label className="block mb-1 font-semibold">URL da Capa</Label>
-          <Input type="text" {...register("cover")} placeholder="https://..." />
-        </div>
-
-        {coverPreview && (
-          <div className="mt-2">
-            <p className="mb-1 font-semibold">Preview da Capa:</p>
-            <img
-              src={coverPreview}
-              alt={`Capa do livro ${title}`}
-              className="object-cover w-[250px] h-[350px]"
-            />
-          </div>
-        )}
-
-        <Button type="submit" disabled={loading}>
-          {loading ? "Salvando..." : "Adicionar Livro"}
-        </Button>
+        <Button type="submit" disabled={loading}>{loading ? "Salvando..." : "Adicionar Livro"}</Button>
       </form>
+    </div>
+  );
+}
+
+// Componentes auxiliares
+function InputField({ label, error, ...props }: any) {
+  return (
+    <div>
+      <Label className="block mb-1 font-semibold">{label}</Label>
+      <Input {...props} />
+      {error && <p className="text-red-500">{error}</p>}
+    </div>
+  );
+}
+
+function TextareaField({ label, ...props }: any) {
+  return (
+    <div>
+      <Label className="block mb-1 font-semibold">{label}</Label>
+      <Textarea {...props} />
+    </div>
+  );
+}
+
+function SelectField({ label, options, onChange, error }: any) {
+  return (
+    <div>
+      <Label className="block mb-1 font-semibold">{label}</Label>
+      <Select onValueChange={onChange}>
+        <SelectTrigger><SelectValue placeholder={`Selecione ${label.toLowerCase()}`} /></SelectTrigger>
+        <SelectContent>
+          {options.map((o: string) => <SelectItem key={o} value={o}>{o}</SelectItem>)}
+        </SelectContent>
+      </Select>
+      {error && <p className="text-red-500">{error}</p>}
     </div>
   );
 }
