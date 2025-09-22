@@ -25,7 +25,7 @@ export default function BooksList() {
       const genresData = await GetGenres();
       setBooks(booksData);
       setGenres(
-        genresData.map((genre: any) => ({
+        genresData.map((genre) => ({
           id: Number(genre.id),
           genre: genre.genre || `Genero-${genre.id}`,
         }))
