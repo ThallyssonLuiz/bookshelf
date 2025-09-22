@@ -17,11 +17,11 @@ import { CreateBook, GetGenres } from "../api/data";
 const DEFAULT_COVER = "/covers/default-cover.png";
 
 const schema = z.object({
-  title: z.string().min(1),
-  author: z.string().min(1),
-  genre: z.string().min(1),
-  year_published: z.number().min(0),
-  pages: z.number().min(1),
+  title: z.string().min(1, { message: "O título é obrigatório" }),
+  author: z.string().min(1, { message: "O autor é obrigatório" }),
+  genre: z.string({message : "Adicione um gênero"}).min(1),
+  year_published: z.number({message : "Adicione um ano válido"}).min(1000, {message : "Adicione um ano válido"}).max(new Date().getFullYear(), {message : "Adicione um ano válido"}),
+  pages: z.number({message: "Adicione um número de páginas"}).min(1, {message: "O número de páginas deve ser maior que 0"}),
   synopsis: z.string().optional(),
   status: z.enum(["LIDO", "LENDO", "QUERO_LER", "PAUSADO", "ABANDONADO"]).default("QUERO_LER"),
   cover: z.string().url().or(z.literal("")).optional(),
