@@ -2,16 +2,23 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
-import { useEffect, useState, startTransition } from "react";
+import { startTransition, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Textarea } from "@/components/ui/textarea";
 
+import { SaveIcon } from "lucide-react";
 import { CreateBook, GetGenres } from "../api/data";
 
 const DEFAULT_COVER = "/covers/default-cover.png";
@@ -19,11 +26,18 @@ const DEFAULT_COVER = "/covers/default-cover.png";
 const schema = z.object({
   title: z.string().min(1, { message: "O título é obrigatório" }),
   author: z.string().min(1, { message: "O autor é obrigatório" }),
-  genre: z.string({message : "Adicione um gênero"}).min(1),
-  year_published: z.number({message : "Adicione um ano válido"}).min(1000, {message : "Adicione um ano válido"}).max(new Date().getFullYear(), {message : "Adicione um ano válido"}),
-  pages: z.number({message: "Adicione um número de páginas"}).min(1, {message: "O número de páginas deve ser maior que 0"}),
+  genre: z.string({ message: "Adicione um gênero" }).min(1),
+  year_published: z
+    .number({ message: "Adicione um ano válido" })
+    .min(1000, { message: "Adicione um ano válido" })
+    .max(new Date().getFullYear(), { message: "Adicione um ano válido" }),
+  pages: z
+    .number({ message: "Adicione um número de páginas" })
+    .min(1, { message: "O número de páginas deve ser maior que 0" }),
   synopsis: z.string().optional(),
-  status: z.enum(["LIDO", "LENDO", "QUERO_LER", "PAUSADO", "ABANDONADO"]).default("QUERO_LER"),
+  status: z
+    .enum(["LIDO", "LENDO", "QUERO_LER", "PAUSADO", "ABANDONADO"])
+    .default("QUERO_LER"),
   cover: z.string().url().or(z.literal("")).optional(),
 });
 
@@ -33,7 +47,13 @@ export default function AddBookPage() {
   const [loading, setLoading] = useState(false);
   const [coverPreview, setCoverPreview] = useState(DEFAULT_COVER);
 
-  const { register, handleSubmit, setValue, watch, formState: { errors } } = useForm({
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    watch,
+    formState: { errors },
+  } = useForm({
     resolver: zodResolver(schema),
     defaultValues: { status: "QUERO_LER" },
   });
@@ -48,7 +68,16 @@ export default function AddBookPage() {
     GetGenres().then(setGenres);
   }, []);
 
-  const onSubmit = async (data: any) => {
+  const onSubmit = async (data: {
+    title: string;
+    author: string;
+    genre: string;
+    year_published: number;
+    pages: number;
+    status: "LIDO" | "LENDO" | "QUERO_LER" | "PAUSADO" | "ABANDONADO";
+    synopsis?: string;
+    cover?: string;
+  }) => {
     setLoading(true);
     try {
       const yearNow = new Date().getFullYear();
@@ -68,22 +97,62 @@ export default function AddBookPage() {
     <div className="max-w-3xl mx-auto p-6">
       <h1 className="text-2xl font-bold mb-6">Adicionar Novo Livro</h1>
       <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
-        <InputField label="Título" {...register("title")} error={errors.title?.message} />
-        <InputField label="Autor" {...register("author")} error={errors.author?.message} />
-        <SelectField label="Gênero" options={genres.map(g => g.genre)} onChange={v => setValue("genre", v)} error={errors.genre?.message} />
-        <InputField label="Ano de Publicação" type="number" {...register("year_published", { valueAsNumber: true })} error={errors.year_published?.message} />
-        <InputField label="Número de Páginas" type="number" {...register("pages", { valueAsNumber: true })} error={errors.pages?.message} />
+        <InputField
+          label="Título"
+          {...register("title")}
+          error={errors.title?.message}
+        />
+        <InputField
+          label="Autor"
+          {...register("author")}
+          error={errors.author?.message}
+        />
+        <SelectField
+          label="Gênero"
+          options={genres.map((g) => g.genre)}
+          onChange={(v: any) => setValue("genre", v)}
+          error={errors.genre?.message}
+        />
+        <InputField
+          label="Ano de Publicação"
+          type="number"
+          {...register("year_published", { valueAsNumber: true })}
+          error={errors.year_published?.message}
+        />
+        <InputField
+          label="Número de Páginas"
+          type="number"
+          {...register("pages", { valueAsNumber: true })}
+          error={errors.pages?.message}
+        />
         <TextareaField label="Sinopse" {...register("synopsis")} />
         <SelectField
           label="Status"
-          options={["LENDO","LIDO","QUERO_LER","PAUSADO","ABANDONADO"]}
-          onChange={v => setValue("status", v)}
+          options={["LENDO", "LIDO", "QUERO_LER", "PAUSADO", "ABANDONADO"]}
+          onChange={(v: any) => setValue("status", v)}
         />
-        <InputField label="URL da Capa" {...register("cover")} placeholder="https://..." />
+        <InputField
+          label="URL da Capa"
+          {...register("cover")}
+          placeholder="https://..."
+        />
 
-        {coverPreview && <img src={coverPreview} alt="Preview da capa" className="object-cover w-[250px] h-[350px]" />}
+        {coverPreview && (
+          <img
+            src={coverPreview}
+            alt="Preview da capa"
+            className="rounded object-cover w-[250px] h-[350px]"
+          />
+        )}
 
-        <Button type="submit" disabled={loading}>{loading ? "Salvando..." : "Adicionar Livro"}</Button>
+        <Button
+          className="bg-green-600 hover:bg-green-700"
+          type="submit"
+          disabled={loading}
+        >
+          <SaveIcon />
+          {loading ? "Salvando..." : "Adicionar Livro"}
+        </Button>
       </form>
     </div>
   );
@@ -114,9 +183,15 @@ function SelectField({ label, options, onChange, error }: any) {
     <div>
       <Label className="block mb-1 font-semibold">{label}</Label>
       <Select onValueChange={onChange}>
-        <SelectTrigger><SelectValue placeholder={`Selecione ${label.toLowerCase()}`} /></SelectTrigger>
+        <SelectTrigger>
+          <SelectValue placeholder={`Selecione ${label.toLowerCase()}`} />
+        </SelectTrigger>
         <SelectContent>
-          {options.map((o: string) => <SelectItem key={o} value={o}>{o}</SelectItem>)}
+          {options.map((o: string) => (
+            <SelectItem key={o} value={o}>
+              {o}
+            </SelectItem>
+          ))}
         </SelectContent>
       </Select>
       {error && <p className="text-red-500">{error}</p>}
