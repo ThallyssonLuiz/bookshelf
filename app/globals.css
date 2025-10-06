@@ -1,3 +1,47 @@
+:root {
+  --bg: #F0E9E3;
+  --text: #3a3a3a;
+  --card: #fffdfb;
+  --muted: #7b7b7b;
+  --accent: #c68a54;
+  --border: #e3e0dc;
+}
+
+
+:root.dark {
+  --bg: #1a1a1a;
+  --text: #f9f9f9;
+  --card: #2a2a2a;
+  --muted: #b0b0b0;
+  --accent: #d4a070;
+  --border: #3a3a3a;
+}
+
+html,
+body {
+  background-color: var(--bg);
+  color: var(--text);
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--text);
+}
+
+.card {
+  background-color: var(--card);
+  border: 1px solid var(--border);
+  color: var(--text);
+}
+
+.btn {
+  background-color: var(--accent);
+  color: var(--text);
+}
+
 @import "tailwindcss";
 @import "tw-animate-css";
 
