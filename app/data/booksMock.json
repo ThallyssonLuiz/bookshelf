@@ -1,69 +1,162 @@
 {
   "books": [
     {
-      "id": "1a2b3c4d",
-      "title": "O Segredo do Vale Sombrio",
+      "title": "O Segredo do Vale da Lua",
       "author": "Mariana Albuquerque",
       "genre": "Fantasia",
-      "year_published": 2019,
-      "year_registration": 2023,
-      "pages": 384,
-      "rating": 4,
+      "year_published": "2018",
+      "pages": 36,
       "status": "LIDO",
-      "synopsis": "Em um vale esquecido pelo tempo, uma jovem descobre que seu destino está ligado a forças mágicas antigas que podem salvar ou destruir o mundo.",
-      "cover": "https://example.com/capas/vale-sombrio.jpg"
+      "synopsis": "apenas um teste",
+      "cover": "https://m.media-amazon.com/images/I/51Ij8LdHVxL._AC_SY200_QL15_.jpg",
+      "id": "1a2b3c4d",
+      "year_registration": 2023
     },
     {
-      "id": "2b3c4d5e",
       "title": "O Último Suspiro",
       "author": "Rafael Monteiro",
-      "genre": "Suspense",
+      "genre": "Ficção",
       "year_published": 2021,
-      "year_registration": 2024,
       "pages": 298,
-      "rating": 5,
-      "status": "LENDO",
       "synopsis": "Um detetive aposentado é arrastado de volta ao submundo do crime quando uma série de assassinatos segue um padrão ligado ao seu passado.",
-      "cover": "https://example.com/capas/ultimo-suspiro.jpg"
+      "status": "QUERO_LER",
+      "cover": "data:image/jpeg;base64,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",
+      "id": "2b3c4d5e",
+      "year_registration": 2025
     },
     {
-      "id": "3c4d5e6f",
       "title": "Entre Dois Mundos",
       "author": "Camila Ferreira",
       "genre": "Romance",
       "year_published": 2018,
-      "year_registration": 2024,
       "pages": 412,
-      "rating": 3,
-      "status": "ABANDONADO",
+      "status": "QUERO_LER",
       "synopsis": "Duas pessoas de realidades completamente diferentes se encontram e precisam lutar contra preconceitos e escolhas difíceis para ficarem juntas.",
-      "cover": "https://example.com/capas/entre-dois-mundos.jpg"
+      "cover": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdtOsjLt2K9ly5IztDCTqL2fU7_Kpxb81fUQ&s",
+      "year_registration": 2024,
+      "id": "3c4d5e6f"
     },
     {
-      "id": "4d5e6f7g",
       "title": "Além das Estrelas",
       "author": "Lucas Andrade",
       "genre": "Ficção Científica",
       "year_published": 2020,
-      "year_registration": 2025,
       "pages": 450,
-      "rating": 5,
       "status": "LENDO",
       "synopsis": "Uma missão espacial em busca de um novo planeta habitável revela segredos sombrios sobre a humanidade e sua relação com o universo.",
-      "cover": "https://example.com/capas/alem-das-estrelas.jpg"
+      "cover": "https://m.media-amazon.com/images/I/81ZwxLwRgjL._UF1000,1000_QL80_.jpg",
+      "year_registration": 2025,
+      "id": "4d5e6f7g"
     },
     {
-      "id": "5e6f7g8h",
       "title": "O Silêncio da Floresta",
       "author": "Beatriz Costa",
       "genre": "Terror",
       "year_published": 2017,
       "year_registration": 2025,
       "pages": 276,
-      "rating": 4,
       "status": "QUERO_LER",
       "synopsis": "Um grupo de amigos decide acampar em uma floresta isolada, mas descobre que o silêncio esconde segredos aterrorizantes.",
-      "cover": "https://example.com/capas/silencio-da-floresta.jpg"
+      "cover": "https://m.media-amazon.com/images/I/51hKm7svjsL._SY445_SX342_ControlCacheEqualizer_.jpg",
+      "id": "5e6f7g8h"
+    },
+    {
+      "id": "dab3",
+      "title": "O Senhor dos Anéis",
+      "author": "J. R. R. Tolkien",
+      "genre": "Fantasia",
+      "year_published": 1949,
+      "pages": 1232,
+      "synopsis": "O Senhor dos Anéis é um livro de alta fantasia, escrito pelo escritor britânico J. R. R. Tolkien. Escrita entre 1937 e 1949, com muitas partes criadas durante a Segunda Guerra Mundial, a saga é uma continuação de O Hobbit.",
+      "status": "LENDO",
+      "cover": "https://m.media-amazon.com/images/I/71ZLavBjpRL._UF1000,1000_QL80_.jpg",
+      "year_registration": 2025
+    },
+    {
+      "title": "Naruto",
+      "author": "Masashi Kishimoto",
+      "genre": "Ficção",
+      "year_published": 2012,
+      "pages": 400,
+      "status": "LIDO",
+      "synopsis": "Naruto segue Naruto Uzumaki, um jovem ninja órfão da Vila Oculta da Folha que busca o reconhecimento dos outros e sonha em se tornar o Hokage, o líder da sua vila. A história começa quando ele é graduado como ninja e descobre que um poderoso demónio raposa foi selado dentro de si, um feito realizado pelo seu pai, o Quarto Hokage, para salvar a aldeia. Juntamente com os seus colegas Sakura e Sasuke, e o seu mentor Kakashi, Naruto embarca em missões e treinos para superar os seus limites e proteger a sua vila de ameaças como o vilão Orochimaru e a organização Akatsuki. ",
+      "cover": "https://wallpapers.com/images/hd/naruto-shippuden-pictures-th3sh08uchw11qg6.jpg",
+      "year_registration": 2023,
+      "id": "e077"
+    },
+    {
+      "title": "Capitães de Areia",
+      "author": "Jorge Amado",
+      "genre": "Literatura Brasileira",
+      "year_published": 2009,
+      "pages": 270,
+      "status": "LIDO",
+      "synopsis": "Capitães da Areia, a história crua e comovente de meninos pobres que moram num trapiche abandonado em Salvador, é talvez o romance mais influente de Jorge Amado. Clássico absoluto dos livros sobre a infância abandonada, assombrou e encantou várias gerações de leitores e permanece hoje tão atual quanto na época em que foi escrito.",
+      "cover": "https://m.media-amazon.com/images/I/81t7altQZxL.jpg",
+      "year_registration": 2025,
+      "id": "2040"
+    }
+  ],
+  "genres": [
+    {
+      "id": "1",
+      "genre": "Literatura Brasileira"
+    },
+    {
+      "id": "2",
+      "genre": "Ficção Científica"
+    },
+    {
+      "id": "3",
+      "genre": "Realismo Mágico"
+    },
+    {
+      "id": "4",
+      "genre": "Ficção"
+    },
+    {
+      "id": "5",
+      "genre": "Fantasia"
+    },
+    {
+      "id": "6",
+      "genre": "Romance"
+    },
+    {
+      "id": "7",
+      "genre": "Biografia"
+    },
+    {
+      "id": "8",
+      "genre": "História"
+    },
+    {
+      "id": "9",
+      "genre": "Autoajuda"
+    },
+    {
+      "id": "10",
+      "genre": "Tecnologia"
+    },
+    {
+      "id": "11",
+      "genre": "Programação"
+    },
+    {
+      "id": "12",
+      "genre": "Negócios"
+    },
+    {
+      "id": "13",
+      "genre": "Psicologia"
+    },
+    {
+      "id": "14",
+      "genre": "Filosofia"
+    },
+    {
+      "id": "15",
+      "genre": "Poesia"
     }
   ]
 }
