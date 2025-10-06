@@ -1,5 +1,6 @@
 import { Card, CardContent } from "@/components/ui/card";
 import Image from "next/image";
+import Rating from "./Rating";
 
 interface BooksItemProps {
   id: string;
@@ -26,7 +27,10 @@ export function BooksItem({
   author,
   status,
 }: Readonly<BooksItemProps>) {
-  const style = statusStyle[status] || { bgColor: "bg-gray-100", textColor: "text-gray-800" };
+  const style = statusStyle[status] || {
+    bgColor: "bg-gray-100",
+    textColor: "text-gray-800",
+  };
   return (
     <Card className="pt-0 w-64 max-w-sm overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 ease-in-out">
       <div className="relative h-48 w-full">
@@ -38,6 +42,7 @@ export function BooksItem({
         />
       </div>
       <CardContent className="p-4">
+        <Rating />
         <h3 className="font-bold text-lg text-gray-800 truncate">{title}</h3>
         <p className="text-sm text-gray-600 truncate">{author}</p>
         <div className="mt-2">

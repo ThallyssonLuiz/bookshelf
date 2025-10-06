@@ -35,7 +35,7 @@ export default function EditBookButton({
   const [form, setForm] = useState({
     title: initialBook.title,
     author: initialBook.author,
-    genre: initialBook.genre,
+    genreId: initialBook.genreId,
     yearPublished: initialBook.year_published,
     pages: initialBook.pages,
     status: initialBook.status,
@@ -52,7 +52,7 @@ export default function EditBookButton({
     setForm({
       title: initialBook.title,
       author: initialBook.author,
-      genre: initialBook.genre,
+      genreId: initialBook.genreId,
       yearPublished: initialBook.year_published,
       pages: initialBook.pages,
       status: initialBook.status,
@@ -69,7 +69,7 @@ export default function EditBookButton({
       const updated: Partial<Book> = {
         title: form.title,
         author: form.author,
-        genre: form.genre,
+        genreId: form.genreId,
         year_published: form.yearPublished,
         pages: form.pages,
         status: form.status,
@@ -118,9 +118,9 @@ export default function EditBookButton({
             />
             <span>Gênero</span>
             <Input
-              value={form.genre}
-              onChange={(e) => handleChange("genre", e.target.value)}
-              placeholder="Gênero"
+              value={form.genreId}
+              onChange={(e) => handleChange("genreId", e.target.value)}
+              placeholder="ID do Gênero"
             />
             <span>Ano de publicação:</span>
             <Input

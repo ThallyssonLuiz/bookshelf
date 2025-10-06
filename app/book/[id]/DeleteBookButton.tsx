@@ -7,7 +7,7 @@ import { Trash2Icon } from "lucide-react";
 import { useRouter } from "next/navigation";
 import * as React from "react";
 
-export function DeleteBookButton({ id }: { id: string }) {
+export function DeleteBookButton({ id }: { readonly id: string }) {
   const router = useRouter();
   const [loading, setLoading] = React.useState(false);
 

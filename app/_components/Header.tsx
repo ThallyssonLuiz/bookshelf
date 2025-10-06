@@ -1,9 +1,10 @@
 import { Button } from "@/components/ui/button";
 import { Library, Plus } from "lucide-react";
 import Link from "next/link";
+import ThemeToggle from "./ThemeToggle";
 export default function Header() {
   return (
-    <header className="flex items-center justify-center w-full border border-gray-300 p-2.5">
+    <header className="flex items-center justify-center w-full border border-b-gray-300 p-2.5">
       <div className="flex items-center justify-between w-full">
         <div>
           <Link
@@ -24,6 +25,7 @@ export default function Header() {
               <Plus /> Adicionar Livro
             </Link>
           </Button>
+          <ThemeToggle />
         </nav>
       </div>
     </header>
