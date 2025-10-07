@@ -1,10 +1,6 @@
 "use client";
 
-<<<<<<< HEAD
 import { UpdateBook, GetGenres } from "@/app/api/data";
-=======
-import { UpdateBook } from "@/app/api/data";
->>>>>>> bf310c397981b3cde97e46cbdd418de51e094480
 import { Book } from "@/app/types/books";
 import { Button } from "@/components/ui/button";
 import {
@@ -24,16 +20,12 @@ import {
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { Pen, SaveIcon } from "lucide-react";
-<<<<<<< HEAD
 import { useEffect, useState } from "react";
 
 interface Genre {
   id: number;
   name: string;
 }
-=======
-import { useState } from "react";
->>>>>>> bf310c397981b3cde97e46cbdd418de51e094480
 
 interface EditBookButtonProps {
   initialBook: Book;
@@ -45,22 +37,11 @@ export default function EditBookButton({
   onUpdate,
 }: Readonly<EditBookButtonProps>) {
   const [open, setOpen] = useState(false);
-<<<<<<< HEAD
   const [genres, setGenres] = useState<Genre[] | null>(null);
   const [form, setForm] = useState({
     title: initialBook.title,
     author: initialBook.author,
     genreId: initialBook.genreId?.toString() ?? "",
-=======
-  const [form, setForm] = useState({
-    title: initialBook.title,
-    author: initialBook.author,
-<<<<<<< HEAD
-    genreId: initialBook.genreId,
-=======
-    genre: initialBook.genre,
->>>>>>> 29fc341718d571fe1946c3bac7746401875947a5
->>>>>>> bf310c397981b3cde97e46cbdd418de51e094480
     yearPublished: initialBook.year_published,
     pages: initialBook.pages,
     status: initialBook.status,
@@ -70,7 +51,6 @@ export default function EditBookButton({
   });
   const [loading, setLoading] = useState(false);
 
-<<<<<<< HEAD
   useEffect(() => {
     async function fetchGenres() {
       try {
@@ -102,45 +82,13 @@ export default function EditBookButton({
   const handleChange = (key: keyof typeof form, value: any) =>
     setForm((prev) => ({ ...prev, [key]: value }));
 
-=======
-  const handleChange = (key: keyof typeof form, value: any) =>
-    setForm((prev) => ({ ...prev, [key]: value }));
-
-  const handleCancel = () => {
-    setForm({
-      title: initialBook.title,
-      author: initialBook.author,
-<<<<<<< HEAD
-      genreId: initialBook.genreId,
-=======
-      genre: initialBook.genre,
->>>>>>> 29fc341718d571fe1946c3bac7746401875947a5
-      yearPublished: initialBook.year_published,
-      pages: initialBook.pages,
-      status: initialBook.status,
-      synopsis: initialBook.synopsis || "",
-      cover: initialBook.cover || "",
-      year_registration: initialBook.year_registration,
-    });
-    setOpen(false);
-  };
-
->>>>>>> bf310c397981b3cde97e46cbdd418de51e094480
   const handleSave = async () => {
     try {
       setLoading(true);
       const updated: Partial<Book> = {
         title: form.title,
         author: form.author,
-<<<<<<< HEAD
         genreId: form.genreId,
-=======
-<<<<<<< HEAD
-        genreId: form.genreId,
-=======
-        genre: form.genre,
->>>>>>> 29fc341718d571fe1946c3bac7746401875947a5
->>>>>>> bf310c397981b3cde97e46cbdd418de51e094480
         year_published: form.yearPublished,
         pages: form.pages,
         status: form.status,
@@ -161,14 +109,7 @@ export default function EditBookButton({
 
   return (
     <>
-<<<<<<< HEAD
       <Button className="bg-yellow-600 hover:bg-yellow-700" onClick={() => setOpen(true)}>
-=======
-      <Button
-        className="bg-yellow-600 hover:bg-yellow-700"
-        onClick={() => setOpen(true)}
-      >
->>>>>>> bf310c397981b3cde97e46cbdd418de51e094480
         <Pen className="mr-2 h-4 w-4" /> Editar Livro
       </Button>
 
@@ -180,7 +121,6 @@ export default function EditBookButton({
 
           <div className="flex flex-col gap-2">
             <span>Título:</span>
-<<<<<<< HEAD
             <Input value={form.title} onChange={(e) => handleChange("title", e.target.value)} />
 
             <span>Autor:</span>
@@ -207,36 +147,10 @@ export default function EditBookButton({
               <div>Carregando gêneros...</div>
             )}
 
-=======
-            <Input
-              value={form.title}
-              onChange={(e) => handleChange("title", e.target.value)}
-              placeholder="Título"
-            />
-            <span>Autor:</span>
-            <Input
-              value={form.author}
-              onChange={(e) => handleChange("author", e.target.value)}
-              placeholder="Autor"
-            />
-            <span>Gênero</span>
-            <Input
-<<<<<<< HEAD
-              value={form.genreId}
-              onChange={(e) => handleChange("genreId", e.target.value)}
-              placeholder="ID do Gênero"
-=======
-              value={form.genre}
-              onChange={(e) => handleChange("genre", e.target.value)}
-              placeholder="Gênero"
->>>>>>> 29fc341718d571fe1946c3bac7746401875947a5
-            />
->>>>>>> bf310c397981b3cde97e46cbdd418de51e094480
             <span>Ano de publicação:</span>
             <Input
               type="number"
               value={form.yearPublished}
-<<<<<<< HEAD
               onChange={(e) => handleChange("yearPublished", Number(e.target.value))}
             />
 
@@ -253,38 +167,6 @@ export default function EditBookButton({
             <Select value={form.status} onValueChange={(v) => handleChange("status", v)}>
               <SelectTrigger>
                 <SelectValue placeholder="Selecione o status" />
-=======
-              onChange={(e) =>
-                handleChange("yearPublished", Number(e.target.value))
-              }
-              placeholder="Ano"
-            />
-            <span>Número de páginas:</span>
-            <Input
-              type="number"
-              value={form.pages}
-              onChange={(e) => handleChange("pages", Number(e.target.value))}
-              placeholder="Páginas"
-            />
-            <span>Descrição:</span>
-            <Textarea
-              value={form.synopsis}
-              onChange={(e) => handleChange("synopsis", e.target.value)}
-              placeholder="Sinopse"
-            />
-            <Input
-              value={form.cover}
-              onChange={(e) => handleChange("cover", e.target.value)}
-              placeholder="URL da capa"
-            />
-            <span>Status</span>
-            <Select
-              value={form.status}
-              onValueChange={(v) => handleChange("status", v)}
-            >
-              <SelectTrigger>
-                <SelectValue />
->>>>>>> bf310c397981b3cde97e46cbdd418de51e094480
               </SelectTrigger>
               <SelectContent>
                 <SelectItem value="LIDO">Lido</SelectItem>
@@ -297,21 +179,10 @@ export default function EditBookButton({
           </div>
 
           <DialogFooter className="flex gap-2 mt-4">
-<<<<<<< HEAD
             <Button className="bg-green-600 hover:bg-green-700" onClick={handleSave} disabled={loading}>
               <SaveIcon /> {loading ? "Salvando..." : "Salvar"}
             </Button>
             <Button variant="outline" onClick={() => setOpen(false)} disabled={loading}>
-=======
-            <Button
-              className="bg-green-600 hover:bg-green-700"
-              onClick={handleSave}
-              disabled={loading}
-            >
-              <SaveIcon /> {loading ? "Salvando..." : "Salvar"}
-            </Button>
-            <Button variant="outline" onClick={handleCancel} disabled={loading}>
->>>>>>> bf310c397981b3cde97e46cbdd418de51e094480
               Cancelar
             </Button>
           </DialogFooter>
