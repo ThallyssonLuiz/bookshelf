@@ -1,9 +1,7 @@
 import { Card, CardContent } from "@/components/ui/card";
 import Image from "next/image";
-<<<<<<< HEAD
 import Rating from "./Rating";
-=======
->>>>>>> 29fc341718d571fe1946c3bac7746401875947a5
+
 
 interface BooksItemProps {
   id: string;
@@ -11,6 +9,9 @@ interface BooksItemProps {
   title: string;
   author: string;
   status: "QUERO_LER" | "LENDO" | "LIDO" | "PAUSADO" | "ABANDONADO";
+
+  rating: number
+
 }
 
 const statusStyle: Record<
@@ -29,15 +30,15 @@ export function BooksItem({
   title,
   author,
   status,
+  rating
 }: Readonly<BooksItemProps>) {
-<<<<<<< HEAD
+
+
   const style = statusStyle[status] || {
     bgColor: "bg-gray-100",
     textColor: "text-gray-800",
   };
-=======
-  const style = statusStyle[status] || { bgColor: "bg-gray-100", textColor: "text-gray-800" };
->>>>>>> 29fc341718d571fe1946c3bac7746401875947a5
+
   return (
     <Card className="pt-0 w-64 max-w-sm overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 ease-in-out">
       <div className="relative h-48 w-full">
@@ -49,10 +50,11 @@ export function BooksItem({
         />
       </div>
       <CardContent className="p-4">
-<<<<<<< HEAD
-        <Rating />
-=======
->>>>>>> 29fc341718d571fe1946c3bac7746401875947a5
+        <div className="flex items-center gap-2">
+          <Rating assessment={rating} handleChange={(newRating)=> console.log(rating)} />
+            <span className={`${rating > 3 ? "text-green-700": "text-red-700"} font-bold`} >{rating}</span>
+        </div>
+
         <h3 className="font-bold text-lg text-gray-800 truncate">{title}</h3>
         <p className="text-sm text-gray-600 truncate">{author}</p>
         <div className="mt-2">

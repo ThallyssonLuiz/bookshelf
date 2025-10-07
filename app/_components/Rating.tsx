@@ -1,12 +1,20 @@
 "use client";
 import ReactStars from "react-stars";
 
-export default function Rating() {
+interface RatingProps {
+  assessment: number;
+  handleChange: (rating: number) => void;
+}
+
+export default function Rating({
+  assessment,
+  handleChange,
+}: Readonly<RatingProps>) {
   return (
     <ReactStars
       count={5}
-      value={0}
-      onChange={(newRating) => console.log(newRating)}
+      value={assessment}
+      onChange={(rating) => handleChange(rating)}
       size={24}
       color2={"#08a818"}
     />

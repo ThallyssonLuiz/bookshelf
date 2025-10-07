@@ -1,23 +1,25 @@
 import { Button } from "@/components/ui/button";
 import { Library, Plus } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
-<<<<<<< HEAD
+
 import ThemeToggle from "./ThemeToggle";
 export default function Header() {
   return (
     <header className="flex items-center justify-center w-full border border-b-gray-300 p-2.5">
-=======
-export default function Header() {
-  return (
-    <header className="flex items-center justify-center w-full border border-gray-300 p-2.5">
->>>>>>> 29fc341718d571fe1946c3bac7746401875947a5
       <div className="flex items-center justify-between w-full">
         <div>
           <Link
             href="/"
             className="text-2xl font-bold text-gray-700 hover:text-blue-400"
           >
-            Dashboard
+            <Image
+              src="/logo.png"
+              alt="Library logo"
+              className="object-contain"
+              width={150}
+              height={150}
+            />
           </Link>
         </div>
         <nav className="flex gap-2.5">
@@ -31,10 +33,7 @@ export default function Header() {
               <Plus /> Adicionar Livro
             </Link>
           </Button>
-<<<<<<< HEAD
           <ThemeToggle />
-=======
->>>>>>> 29fc341718d571fe1946c3bac7746401875947a5
         </nav>
       </div>
     </header>

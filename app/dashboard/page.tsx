@@ -1,7 +1,6 @@
 import { BookAIcon, BookCheck, BookOpen } from "lucide-react";
 import CardBook from "../_components/CardBook";
 import Chart from "../_components/Chart";
-<<<<<<< HEAD
 import prisma from "@/lib/prisma";
 
 
@@ -19,15 +18,6 @@ export default async function Dashboard() {
     (acc, act) => acc + act.pages,
     0
   );
-=======
-
-import { GetBooks } from "../api/data";
-
-export default async function Dashboard() {
-  const data = await GetBooks();
-  const booksAlreadyRead = data.filter((book) => book.status === "LIDO");
-  const booksThatAreBeingRead = data.filter((book) => book.status === "LENDO");
->>>>>>> 29fc341718d571fe1946c3bac7746401875947a5
 
   return (
     <div>
@@ -67,11 +57,7 @@ export default async function Dashboard() {
                 ? "Total de páginas lidas"
                 : "Total de página lida"
             }
-<<<<<<< HEAD
             valueInfo={totalPagesRead}
-=======
-            valueInfo={data.length}
->>>>>>> 29fc341718d571fe1946c3bac7746401875947a5
           />
         </div>
       </div>
@@ -80,22 +66,14 @@ export default async function Dashboard() {
           <h2 className="text-lg font-semibold mb-2 text-center">
             Livros Cadastrados
           </h2>
-<<<<<<< HEAD
           <Chart data={data as any} color="#2563eb" />
-=======
-          <Chart data={data} color="#2563eb" />
->>>>>>> 29fc341718d571fe1946c3bac7746401875947a5
         </div>
 
         <div className="w-full md:w-1/2">
           <h2 className="text-lg font-semibold mb-2 text-center">
             Livros Lidos
           </h2>
-<<<<<<< HEAD
           <Chart data={booksAlreadyRead as any} color="#16a34a" />
-=======
-          <Chart data={booksAlreadyRead} color="#22c55e" />
->>>>>>> 29fc341718d571fe1946c3bac7746401875947a5
         </div>
       </div>
     </div>

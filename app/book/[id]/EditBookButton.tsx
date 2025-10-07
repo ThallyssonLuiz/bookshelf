@@ -1,6 +1,6 @@
 "use client";
 
-import { UpdateBook } from "@/app/api/data";
+import { UpdateBook, GetGenres } from "@/app/api/data";
 import { Book } from "@/app/types/books";
 import { Button } from "@/components/ui/button";
 import {
@@ -20,7 +20,12 @@ import {
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { Pen, SaveIcon } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+
+interface Genre {
+  id: number;
+  name: string;
+}
 
 interface EditBookButtonProps {
   initialBook: Book;
@@ -32,14 +37,11 @@ export default function EditBookButton({
   onUpdate,
 }: Readonly<EditBookButtonProps>) {
   const [open, setOpen] = useState(false);
+  const [genres, setGenres] = useState<Genre[] | null>(null);
   const [form, setForm] = useState({
     title: initialBook.title,
     author: initialBook.author,
-<<<<<<< HEAD
-    genreId: initialBook.genreId,
-=======
-    genre: initialBook.genre,
->>>>>>> 29fc341718d571fe1946c3bac7746401875947a5
+    genreId: initialBook.genreId?.toString() ?? "",
     yearPublished: initialBook.year_published,
     pages: initialBook.pages,
     status: initialBook.status,
@@ -49,27 +51,36 @@ export default function EditBookButton({
   });
   const [loading, setLoading] = useState(false);
 
+  useEffect(() => {
+    async function fetchGenres() {
+      try {
+        const data = await GetGenres();
+        setGenres(data);
+      } catch (err) {
+        console.error("Erro ao carregar gêneros:", err);
+      }
+    }
+    fetchGenres();
+  }, []);
+
+  useEffect(() => {
+    if (open) {
+      setForm({
+        title: initialBook.title,
+        author: initialBook.author,
+        genreId: initialBook.genreId?.toString() ?? "",
+        yearPublished: initialBook.year_published,
+        pages: initialBook.pages,
+        status: initialBook.status,
+        synopsis: initialBook.synopsis || "",
+        cover: initialBook.cover || "",
+        year_registration: initialBook.year_registration,
+      });
+    }
+  }, [open, initialBook]);
+
   const handleChange = (key: keyof typeof form, value: any) =>
     setForm((prev) => ({ ...prev, [key]: value }));
-
-  const handleCancel = () => {
-    setForm({
-      title: initialBook.title,
-      author: initialBook.author,
-<<<<<<< HEAD
-      genreId: initialBook.genreId,
-=======
-      genre: initialBook.genre,
->>>>>>> 29fc341718d571fe1946c3bac7746401875947a5
-      yearPublished: initialBook.year_published,
-      pages: initialBook.pages,
-      status: initialBook.status,
-      synopsis: initialBook.synopsis || "",
-      cover: initialBook.cover || "",
-      year_registration: initialBook.year_registration,
-    });
-    setOpen(false);
-  };
 
   const handleSave = async () => {
     try {
@@ -77,11 +88,7 @@ export default function EditBookButton({
       const updated: Partial<Book> = {
         title: form.title,
         author: form.author,
-<<<<<<< HEAD
         genreId: form.genreId,
-=======
-        genre: form.genre,
->>>>>>> 29fc341718d571fe1946c3bac7746401875947a5
         year_published: form.yearPublished,
         pages: form.pages,
         status: form.status,
@@ -102,10 +109,7 @@ export default function EditBookButton({
 
   return (
     <>
-      <Button
-        className="bg-yellow-600 hover:bg-yellow-700"
-        onClick={() => setOpen(true)}
-      >
+      <Button className="bg-yellow-600 hover:bg-yellow-700" onClick={() => setOpen(true)}>
         <Pen className="mr-2 h-4 w-4" /> Editar Livro
       </Button>
 
@@ -117,63 +121,52 @@ export default function EditBookButton({
 
           <div className="flex flex-col gap-2">
             <span>Título:</span>
-            <Input
-              value={form.title}
-              onChange={(e) => handleChange("title", e.target.value)}
-              placeholder="Título"
-            />
+            <Input value={form.title} onChange={(e) => handleChange("title", e.target.value)} />
+
             <span>Autor:</span>
-            <Input
-              value={form.author}
-              onChange={(e) => handleChange("author", e.target.value)}
-              placeholder="Autor"
-            />
-            <span>Gênero</span>
-            <Input
-<<<<<<< HEAD
-              value={form.genreId}
-              onChange={(e) => handleChange("genreId", e.target.value)}
-              placeholder="ID do Gênero"
-=======
-              value={form.genre}
-              onChange={(e) => handleChange("genre", e.target.value)}
-              placeholder="Gênero"
->>>>>>> 29fc341718d571fe1946c3bac7746401875947a5
-            />
+            <Input value={form.author} onChange={(e) => handleChange("author", e.target.value)} />
+
+            <span>Gênero:</span>
+            {genres ? (
+              <Select
+                value={form.genreId}
+                onValueChange={(v) => handleChange("genreId", v)}
+              >
+                <SelectTrigger>
+                  <SelectValue placeholder="Selecione um gênero" />
+                </SelectTrigger>
+                <SelectContent>
+                  {genres.map((g) => (
+                    <SelectItem key={g.id} value={g.id.toString()}>
+                      {g.name}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            ) : (
+              <div>Carregando gêneros...</div>
+            )}
+
             <span>Ano de publicação:</span>
             <Input
               type="number"
               value={form.yearPublished}
-              onChange={(e) =>
-                handleChange("yearPublished", Number(e.target.value))
-              }
-              placeholder="Ano"
+              onChange={(e) => handleChange("yearPublished", Number(e.target.value))}
             />
+
             <span>Número de páginas:</span>
-            <Input
-              type="number"
-              value={form.pages}
-              onChange={(e) => handleChange("pages", Number(e.target.value))}
-              placeholder="Páginas"
-            />
+            <Input type="number" value={form.pages} onChange={(e) => handleChange("pages", Number(e.target.value))} />
+
             <span>Descrição:</span>
-            <Textarea
-              value={form.synopsis}
-              onChange={(e) => handleChange("synopsis", e.target.value)}
-              placeholder="Sinopse"
-            />
-            <Input
-              value={form.cover}
-              onChange={(e) => handleChange("cover", e.target.value)}
-              placeholder="URL da capa"
-            />
-            <span>Status</span>
-            <Select
-              value={form.status}
-              onValueChange={(v) => handleChange("status", v)}
-            >
+            <Textarea value={form.synopsis} onChange={(e) => handleChange("synopsis", e.target.value)} />
+
+            <span>URL da capa:</span>
+            <Input value={form.cover} onChange={(e) => handleChange("cover", e.target.value)} />
+
+            <span>Status:</span>
+            <Select value={form.status} onValueChange={(v) => handleChange("status", v)}>
               <SelectTrigger>
-                <SelectValue />
+                <SelectValue placeholder="Selecione o status" />
               </SelectTrigger>
               <SelectContent>
                 <SelectItem value="LIDO">Lido</SelectItem>
@@ -186,14 +179,10 @@ export default function EditBookButton({
           </div>
 
           <DialogFooter className="flex gap-2 mt-4">
-            <Button
-              className="bg-green-600 hover:bg-green-700"
-              onClick={handleSave}
-              disabled={loading}
-            >
+            <Button className="bg-green-600 hover:bg-green-700" onClick={handleSave} disabled={loading}>
               <SaveIcon /> {loading ? "Salvando..." : "Salvar"}
             </Button>
-            <Button variant="outline" onClick={handleCancel} disabled={loading}>
+            <Button variant="outline" onClick={() => setOpen(false)} disabled={loading}>
               Cancelar
             </Button>
           </DialogFooter>

@@ -1,5 +1,4 @@
 "use client";
-<<<<<<< HEAD
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -7,8 +6,6 @@ import { BooksItem } from "../_components/BooksItem";
 import { GetBooks, GetGenres } from "../api/data";
 import { Book } from "../types/books";
 import { Genre } from "../types/genres";
-=======
->>>>>>> 29fc341718d571fe1946c3bac7746401875947a5
 import { Input } from "@/components/ui/input";
 import {
   Select,
@@ -17,7 +14,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-<<<<<<< HEAD
 import { Button } from "@/components/ui/button";
 import { PlusIcon } from "lucide-react";
 import { toast } from "sonner";
@@ -57,47 +53,10 @@ export default function BooksList() {
       book.author.toLowerCase().includes(search.toLowerCase());
 
     const matchesGenre = genreFilter === "all" || book.genreId === genreFilter;
-=======
-import Link from "next/link";
-import { useEffect, useState } from "react";
-import { BooksItem } from "../_components/BooksItem";
-import { GetBooks, GetGenres } from "../api/data";
-import { Book } from "../types/books";
-
-export default function BooksList() {
-  const [books, setBooks] = useState<Book[]>([]);
-  const [genres, setGenres] = useState<{ id: number; genre: string }[]>([]);
-  const [value, setValue] = useState("");
-  const [selectedGenre, setSelectedGenre] = useState("all");
-
-  useEffect(() => {
-    async function fetchData() {
-      const booksData = await GetBooks();
-      const genresData = await GetGenres();
-      setBooks(booksData);
-      setGenres(
-        genresData.map((genre) => ({
-          id: Number(genre.id),
-          genre: genre.genre || `Genero-${genre.id}`,
-        }))
-      );
-    }
-    fetchData();
-  }, []);
-
-  const filteredBooks = books.filter((book) => {
-    const matchesSearch =
-      book.title.toLowerCase().includes(value.toLowerCase()) ||
-      book.author.toLowerCase().includes(value.toLowerCase());
-
-    const matchesGenre =
-      selectedGenre === "all" || book.genre === selectedGenre;
->>>>>>> 29fc341718d571fe1946c3bac7746401875947a5
 
     return matchesSearch && matchesGenre;
   });
 
-<<<<<<< HEAD
   if (loading) {
     return (
       <div className="flex justify-center items-center min-h-[400px]">
@@ -112,12 +71,6 @@ export default function BooksList() {
         <h2 className="text-2xl font-bold text-gray-700">
           Sua Biblioteca
         </h2>
-        <Link href="/add">
-          <Button className="bg-green-600 hover:bg-green-700">
-            <PlusIcon className="mr-2 h-4 w-4" />
-            Adicionar Livro
-          </Button>
-        </Link>
       </div>
 
       <div className="flex flex-col sm:flex-row p-4 gap-3">
@@ -130,41 +83,13 @@ export default function BooksList() {
 
         <Select value={genreFilter} onValueChange={setGenreFilter}>
           <SelectTrigger className="w-full sm:w-[200px] text-gray-950">
-=======
-  return (
-    <div className="flex flex-col justify-center sm:justify-start gap-6">
-      <h2 className="text-2xl font-bold m-3 text-center text-gray-700">
-        Sua Biblioteca
-      </h2>
-
-      <div className="flex p-4 gap-3">
-        <Input
-          className="border border-gray-700"
-          placeholder="Filtrar por autor ou título..."
-          value={value}
-          onChange={(e) => setValue(e.target.value)}
-        />
-        <Select
-          value={selectedGenre}
-          onValueChange={(val) => setSelectedGenre(val)}
-        >
-          <SelectTrigger className="w-[180px] text-gray-950">
->>>>>>> 29fc341718d571fe1946c3bac7746401875947a5
             <SelectValue placeholder="Filtrar por gênero" />
           </SelectTrigger>
           <SelectContent>
             <SelectItem value="all">Todos os gêneros</SelectItem>
             {genres.map((genre) => (
-<<<<<<< HEAD
               <SelectItem key={genre.id} value={genre.id}>
                 {genre.name}
-=======
-              <SelectItem
-                key={genre.id}
-                value={genre.genre || String(genre.id)}
-              >
-                {genre.genre}
->>>>>>> 29fc341718d571fe1946c3bac7746401875947a5
               </SelectItem>
             ))}
           </SelectContent>
@@ -178,18 +103,14 @@ export default function BooksList() {
               <BooksItem
                 title={book.title}
                 author={book.author}
-<<<<<<< HEAD
                 cover={book.cover || "/covers/default-cover.png"}
-=======
-                cover={book?.cover}
->>>>>>> 29fc341718d571fe1946c3bac7746401875947a5
                 id={book.id}
                 status={book.status}
+                rating={book.rating}
               />
             </Link>
           ))
         ) : (
-<<<<<<< HEAD
           <div className="text-center py-12">
             <p className="text-gray-500 text-lg mb-4">
               {search || genreFilter !== "all" 
@@ -213,11 +134,6 @@ export default function BooksList() {
           Mostrando {filteredBooks.length} de {books.length} livros
         </div>
       )}
-=======
-          <p className="text-gray-500">Nenhum livro encontrado.</p>
-        )}
-      </div>
->>>>>>> 29fc341718d571fe1946c3bac7746401875947a5
     </div>
   );
 }
