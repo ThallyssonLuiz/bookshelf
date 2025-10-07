@@ -96,30 +96,6 @@ bookshelf/
 - `npx prisma migrate dev` - Executa migrações em desenvolvimento
 - `npx prisma db seed` - Popula o banco com dados iniciais
 
-## 🐛 Correções Implementadas
-
-### Problemas Corrigidos:
-
-1. **Erro no cadastro de livros**
-   - Corrigido mapeamento incorreto de gêneros
-   - Adicionada validação adequada dos campos
-   - Melhorado tratamento de erros na API
-
-2. **Problemas na listagem**
-   - Convertida para componente client-side para filtros funcionais
-   - Adicionado loading state
-   - Melhorada experiência do usuário
-
-3. **Filtros não funcionais**
-   - Implementados filtros em tempo real
-   - Adicionado contador de resultados
-   - Melhorada interface de filtros
-
-4. **Tratamento de erros**
-   - Adicionado tratamento adequado em todas as rotas da API
-   - Implementadas mensagens de erro informativas
-   - Adicionado logging para debug
-
 ## 🎯 Como Usar
 
 1. **Adicionar um livro**: Clique em "Adicionar Livro" e preencha o formulário
